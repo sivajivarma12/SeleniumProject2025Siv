@@ -10,6 +10,7 @@ import org.openqa.selenium.support.ui.Select;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.beans.PropertyChangeListener;
+import java.time.Duration;
 
 public class assignment22 {
     public static void main(String a[]){
@@ -17,6 +18,10 @@ public class assignment22 {
         driver.manage().window().maximize();
         driver.manage().deleteAllCookies();
         driver.get("https://demoqa.com/automation-practice-form");
+
+        //page wait tp load
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(40000));
+
        WebElement firstName = driver.findElement(By.xpath("//input[@id='firstName']"));
                 firstName.sendKeys("sivaji");
 
@@ -43,19 +48,20 @@ public class assignment22 {
         ac.click(dateSelection).click();
 
        WebElement subjectInput = driver.findElement(By.xpath("//input[@id='subjectsInput']"));
-       ac.sendKeys(subjectInput,"Ma").perform();
+       ac.sendKeys(subjectInput,"Computer Science").perform();
 
         WebElement SportSelection = driver.findElement(By.xpath("//label[text()='Sports']"));
-        ac.click(SportSelection).perform();
-        WebElement ReadingSelection = driver.findElement(By.xpath("//label[text()='Sports']"));
-        ac.click(ReadingSelection).perform();
+        SportSelection.click();
+        WebElement ReadingSelection = driver.findElement(By.xpath("//label[text()='Reading']"));
+        ReadingSelection.click();
         //label[text()='Reading']
         WebElement uploadpic = driver.findElement(By.xpath("//input[@id='uploadPicture']"));
-        ac.sendKeys(uploadpic,"C:\\Users\\windows\\Pictures\\Screenshots\\Screenshot (9).png").perform();
-
+        //ac.sendKeys(uploadpic,"C:\Users\windows\Pictures\Screenshots\Screenshot.png").perform();
+        uploadpic.sendKeys("C:\\Users\\windows\\Pictures\\Screenshots\\Screenshot.png");
         WebElement submit = driver.findElement(By.xpath("//button[@id='submit']"));
         ac.click(submit).perform();
-        driver.quit();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+    //    driver.quit();
 
     }
 }
