@@ -2,6 +2,9 @@ package AssignmentsSelenium;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 import java.util.concurrent.TimeUnit;
@@ -22,6 +25,8 @@ public class Assignment23 {
         viewelement(alertOk,driver);
         alertOk.click();
         Alert ac = driver.switchTo().alert();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.alertIsPresent());
         ac.accept();
 
         //locate confirm accept button
@@ -49,12 +54,8 @@ public class Assignment23 {
         WebElement timerButton = driver.findElement(By.xpath("//button[@id='timerAlertButton']"));
         viewelement(timerButton, driver);
         timerButton.click();
-
-        try {
-            Thread.sleep(10000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+        WebDriverWait wait1 = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait1.until(ExpectedConditions.alertIsPresent());
         System.out.println(ac.getText());
         ac.accept();
     }
